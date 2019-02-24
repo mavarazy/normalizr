@@ -180,7 +180,7 @@ describe('denormalize', () => {
     const entities = {
       articles: {
         '123': {
-          author: '8472',
+          author: { id: '8472' },
           body: 'This article is great.',
           comments: ['comment-123-4738'],
           id: '123',
@@ -191,7 +191,7 @@ describe('denormalize', () => {
         'comment-123-4738': {
           comment: 'I like it!',
           id: 'comment-123-4738',
-          user: '10293'
+          user: { id: '10293' }
         }
       },
       users: {
@@ -234,7 +234,7 @@ describe('denormalize', () => {
       entities: {
         patrons: {
           '1': { id: '1', guest: null, name: 'Esther' },
-          '2': { id: '2', guest: 'guest-2-1', name: 'Tom' }
+          '2': { id: '2', guest: { id: 'guest-2-1' }, name: 'Tom' }
         },
         guests: { 'guest-2-1': { guest_id: 1 } }
       },

@@ -2,7 +2,7 @@
 import { fromJS } from 'immutable';
 import { denormalize, normalize, schema } from '../../';
 
-describe(`${schema.Values.name} normalization`, () => {
+describe('ValuesSchema normalization', () => {
   test('normalizes the values of an object with the given schema', () => {
     const cat = new schema.Entity('cats');
     const dog = new schema.Entity('dogs');
@@ -72,7 +72,7 @@ describe(`${schema.Values.name} normalization`, () => {
   });
 });
 
-describe(`${schema.Values.name} denormalization`, () => {
+describe('ValuesSchema denormalization', () => {
   test('denormalizes the values of an object with the given schema', () => {
     const cat = new schema.Entity('cats');
     const dog = new schema.Entity('dogs');

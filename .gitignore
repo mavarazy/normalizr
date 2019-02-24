@@ -5,3 +5,7 @@ dist/*
 *.log
 coverage/*
 .coveralls.yml
+
+# Idea files
+.idea
+*.iml

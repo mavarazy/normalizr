@@ -4,7 +4,7 @@ import { fromJS, Record } from 'immutable';
 
 const values = (obj) => Object.keys(obj).map((key) => obj[key]);
 
-describe(`${schema.Entity.name} normalization`, () => {
+describe('EntitySchema normalization', () => {
   test('normalizes an entity', () => {
     const entity = new schema.Entity('item');
     expect(normalize({ id: 1 }, entity)).toMatchSnapshot();
@@ -116,7 +116,7 @@ describe(`${schema.Entity.name} normalization`, () => {
   });
 });
 
-describe(`${schema.Entity.name} denormalization`, () => {
+describe('EntitySchema denormalization', () => {
   test('denormalizes an entity', () => {
     const mySchema = new schema.Entity('tacos');
     const entities = {

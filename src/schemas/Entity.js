@@ -34,9 +34,9 @@ export default class EntitySchema {
   }
 
   define(definition) {
-    this.schema = Object.keys(definition).reduce((entitySchema, key) => {
-      const schema = definition[key];
-      return { ...entitySchema, [key]: schema };
+    this.schema = Object.keys(definition).reduce((entitySchema, referenceKey) => {
+      const referenceSchema = definition[referenceKey];
+      return { ...entitySchema, [referenceKey]: referenceSchema };
     }, this.schema || {});
   }
 
@@ -48,12 +48,22 @@ export default class EntitySchema {
     return this._mergeStrategy(entityA, entityB);
   }
 
+  isValidReference(entity, referenceKey) {
+    const referenceValue = entity[referenceKey];
+    return entity.hasOwnProperty(referenceKey) && typeof referenceValue === 'object';
+  }
+
   normalize(input, parent, key, visit, addEntity) {
     const processedEntity = this._processStrategy(input, parent, key);
-    Object.keys(this.schema).forEach((key) => {
-      if (processedEntity.hasOwnProperty(key) && typeof processedEntity[key] === 'object') {
-        const schema = this.schema[key];
-        processedEntity[key] = visit(processedEntity[key], processedEntity, key, schema, addEntity);
+    Object.keys(this.schema).forEach((referenceKey) => {
+      if (this.isValidReference(processedEntity, referenceKey)) {
+        const schema = this.schema[referenceKey];
+        const referenceId = visit(processedEntity[referenceKey], processedEntity, referenceKey, schema, addEntity);
+        if (Array.isArray(referenceId) || schema._key === undefined) {
+          processedEntity[referenceKey] = referenceId;
+        } else {
+          processedEntity[referenceKey] = { id: referenceId };
+        }
       }
     });
 
@@ -66,10 +76,12 @@ export default class EntitySchema {
       return ImmutableUtils.denormalizeImmutable(this.schema, entity, unvisit);
     }
 
-    Object.keys(this.schema).forEach((key) => {
-      if (entity.hasOwnProperty(key)) {
-        const schema = this.schema[key];
-        entity[key] = unvisit(entity[key], schema);
+    Object.keys(this.schema).forEach((referenceKey) => {
+      if (entity.hasOwnProperty(referenceKey)) {
+        const schema = this.schema[referenceKey];
+        const referenceId = entity[referenceKey] && entity[referenceKey].id ? entity[referenceKey].id : entity[referenceKey];
+        const referenceValue = unvisit(referenceId, schema);
+        entity[referenceKey] = referenceValue;
       }
     });
     return entity;

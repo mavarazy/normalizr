@@ -18,7 +18,7 @@ const visit = (value, parent, key, schema, addEntity) => {
   return schema.normalize(value, parent, key, visit, addEntity);
 };
 
-const addEntities = (entities) => (schema, processedEntity, value, parent, key) => {
+const addEntitiesFactory = (entities) => (schema, processedEntity, value, parent, key) => {
   const schemaKey = schema.key;
   const id = schema.getId(value, parent, key);
   if (!(schemaKey in entities)) {
@@ -47,7 +47,7 @@ export const normalize = (input, schema) => {
   }
 
   const entities = {};
-  const addEntity = addEntities(entities);
+  const addEntity = addEntitiesFactory(entities);
 
   const result = visit(input, input, null, schema, addEntity);
   return { entities, result };
@@ -55,7 +55,8 @@ export const normalize = (input, schema) => {
 
 const unvisitEntity = (id, schema, unvisit, getEntity, cache) => {
   const entity = getEntity(id, schema);
-  if (typeof entity !== 'object' || entity === null) {
+  const isInvalidObject = typeof entity !== 'object' || entity === null;
+  if (isInvalidObject) {
     return entity;
   }
 
@@ -104,7 +105,7 @@ const getEntities = (entities) => {
   return (entityOrId, schema) => {
     const schemaKey = schema.key;
 
-    if (typeof entityOrId === 'object') {
+    if (typeof entityOrId === 'object' && Object.keys(entityOrId).length > 1) {
       return entityOrId;
     }
 

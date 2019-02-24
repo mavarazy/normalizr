@@ -2,15 +2,21 @@ import * as ImmutableUtils from './ImmutableUtils';
 
 export const normalize = (schema, input, parent, key, visit, addEntity) => {
   const object = { ...input };
-  Object.keys(schema).forEach((key) => {
-    const localSchema = schema[key];
-    const value = visit(input[key], input, key, localSchema, addEntity);
+
+  Object.keys(schema).forEach((referenceKey) => {
+    const localSchema = schema[referenceKey];
+    const value = visit(input[referenceKey], input, referenceKey, localSchema, addEntity);
     if (value === undefined || value === null) {
-      delete object[key];
+      delete object[referenceKey];
     } else {
-      object[key] = value;
+      if (Array.isArray(value) || localSchema._key === undefined || parent === input) {
+        object[referenceKey] = value;
+      } else {
+        object[referenceKey] = { id: value };
+      }
     }
   });
+
   return object;
 };
 
@@ -20,11 +26,12 @@ export const denormalize = (schema, input, unvisit) => {
   }
 
   const object = { ...input };
-  Object.keys(schema).forEach((key) => {
-    if (object[key]) {
-      object[key] = unvisit(object[key], schema[key]);
+  Object.keys(schema).forEach((referenceKey) => {
+    if (object[referenceKey]) {
+      object[referenceKey] = unvisit(object[referenceKey], schema[referenceKey]);
     }
   });
+
   return object;
 };
 
@@ -34,9 +41,9 @@ export default class ObjectSchema {
   }
 
   define(definition) {
-    this.schema = Object.keys(definition).reduce((entitySchema, key) => {
-      const schema = definition[key];
-      return { ...entitySchema, [key]: schema };
+    this.schema = Object.keys(definition).reduce((entitySchema, referenceKey) => {
+      const referenceSchema = definition[referenceKey];
+      return { ...entitySchema, [referenceKey]: referenceSchema };
     }, this.schema || {});
   }
 

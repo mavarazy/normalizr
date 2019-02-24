@@ -2,7 +2,7 @@
 import { fromJS } from 'immutable';
 import { denormalize, normalize, schema } from '../../';
 
-describe(`${schema.Union.name} normalization`, () => {
+describe('UnionSchema normalization', () => {
   test('throws if not given a schemaAttribute', () => {
     expect(() => new schema.Union({})).toThrow();
   });
@@ -41,7 +41,7 @@ describe(`${schema.Union.name} normalization`, () => {
   });
 });
 
-describe(`${schema.Union.name} denormalization`, () => {
+describe('UnionSchema denormalization', () => {
   const user = new schema.Entity('users');
   const group = new schema.Entity('groups');
   const entities = {

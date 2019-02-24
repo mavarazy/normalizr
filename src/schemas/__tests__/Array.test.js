@@ -2,7 +2,7 @@
 import { fromJS } from 'immutable';
 import { denormalize, normalize, schema } from '../../';
 
-describe(`${schema.Array.name} normalization`, () => {
+describe('ArraySchema normalization', () => {
   describe('Object', () => {
     test(`normalizes plain arrays as shorthand for ${schema.Array.name}`, () => {
       const userSchema = new schema.Entity('user');
@@ -89,7 +89,7 @@ describe(`${schema.Array.name} normalization`, () => {
   });
 });
 
-describe(`${schema.Array.name} denormalization`, () => {
+describe('ArraySchema denormalization', () => {
   describe('Object', () => {
     test('denormalizes a single entity', () => {
       const cats = new schema.Entity('cats');

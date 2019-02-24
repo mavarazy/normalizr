@@ -339,7 +339,9 @@ Object {
     },
     "parents": Object {
       "1": Object {
-        "child": 4,
+        "child": Object {
+          "id": 4,
+        },
         "content": "parent",
         "id": 1,
       },
@@ -360,7 +362,9 @@ Object {
     "entries": Object {
       "123": Object {
         "data": Object {
-          "attachment": "456",
+          "attachment": Object {
+            "id": "456",
+          },
         },
         "id": "123",
         "type": "message",

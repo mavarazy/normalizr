@@ -131,7 +131,9 @@ Object {
   "entities": Object {
     "articles": Object {
       "123": Object {
-        "author": "8472",
+        "author": Object {
+          "id": "8472",
+        },
         "body": "This article is great.",
         "comments": Array [
           "comment-123-4738",
@@ -144,7 +146,9 @@ Object {
       "comment-123-4738": Object {
         "comment": "I like it!",
         "id": "comment-123-4738",
-        "user": "10293",
+        "user": Object {
+          "id": "10293",
+        },
       },
     },
     "users": Object {
@@ -182,7 +186,9 @@ Object {
   "entities": Object {
     "recommendations": Object {
       "456": Object {
-        "user": "456",
+        "user": Object {
+          "id": "456",
+        },
       },
     },
     "users": Object {
