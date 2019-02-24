@@ -1,0 +1,67 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/normalizr
+  docker:
+    - image: circleci/node:8.12-jessie-browsers
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }} # fallback to using the latest cache if no exact match is found
+
+      - run:
+          name: install
+          command: npm i
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: lint
+          command: npm run lint
+      - run:
+          name: test
+          command: npm test -- --coverage
+
+      - run:
+          name: Code coverage
+          command: bash <(curl -s https://codecov.io/bash) -caba4cf3-f1f0-411f-a9f4-e6da45a5b0cd
+
+      - persist_to_workspace:
+          root: ~/normalizr
+          paths: .
+
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/normalizr
+      - run:
+          name: Avoid hosts unknown for github
+          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
+          name: Build release
+          command: npm run build
+      - run:
+          name: Publish package
+          command: npm run semantic-release
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

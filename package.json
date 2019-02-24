@@ -10,8 +10,20 @@
     "url": "https://github.com/paularmstrong/normalizr.git",
     "type": "git"
   },
-  "keywords": ["flux", "redux", "normalize", "denormalize", "api", "json"],
-  "files": ["dist/", "index.d.ts", "LICENSE", "README.md"],
+  "keywords": [
+    "flux",
+    "redux",
+    "normalize",
+    "denormalize",
+    "api",
+    "json"
+  ],
+  "files": [
+    "dist/",
+    "index.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
   "main": "dist/normalizr.js",
   "module": "dist/normalizr.es.js",
   "typings": "index.d.ts",
@@ -29,10 +41,13 @@
     "prepublishOnly": "npm run build",
     "test": "jest",
     "test:ci": "jest --ci",
-    "test:coverage": "npm run test -- --coverage && cat ./coverage/lcov.info | coveralls"
+    "test:coverage": "npm run test -- --coverage && cat ./coverage/lcov.info | coveralls",
+    "semantic-release": "semantic-release"
   },
   "author": "Paul Armstrong",
-  "contributors": ["Dan Abramov"],
+  "contributors": [
+    "Dan Abramov"
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -58,13 +73,20 @@
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-filesize": "^1.5.0",
     "rollup-plugin-uglify": "^3.0.0",
+    "semantic-release": "^15.13.3",
     "typescript": "^3.3.3333",
     "typescript-definition-tester": "0.0.6",
     "uglify-es": "^3.3.8"
   },
   "dependencies": {},
   "lint-staged": {
-    "src/**/*.js": ["test", "git add"],
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "src/**/*.js": [
+      "test",
+      "git add"
+    ],
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
