@@ -30,8 +30,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "npm run clean && npm-run-all --parallel build:*",
-    "build:development": "NODE_ENV=development rollup -c",
-    "build:production": "NODE_ENV=production rollup -c",
+    "build:development": "NODE_ENV=development rollup -c --extend",
+    "build:production": "NODE_ENV=production rollup -c --extend",
     "clean": "rimraf dist",
     "flow": "flow",
     "lint": "eslint --fix .",
@@ -82,7 +82,15 @@
   "jest": {
     "verbose": true,
     "moduleFileExtensions": ["js"],
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    }
   },
   "lint-staged": {
     "src/**/*.js": [
