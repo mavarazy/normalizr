@@ -1,6 +1,5 @@
 import babel from 'rollup-plugin-babel';
 import filesize from 'rollup-plugin-filesize';
-import { minify } from 'uglify-es';
 import { name } from './package.json';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -17,8 +16,5 @@ export default {
     { file: `${destBase}.amd${destExtension}`, format: 'amd', name },
     { file: `${destBase}.browser${destExtension}`, format: 'iife', name }
   ],
-  plugins: [
-    babel(),
-    filesize()
-  ].filter(Boolean)
+  plugins: [babel(), filesize()].filter(Boolean)
 };

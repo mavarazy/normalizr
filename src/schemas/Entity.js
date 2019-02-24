@@ -79,7 +79,8 @@ export default class EntitySchema {
     Object.keys(this.schema).forEach((referenceKey) => {
       if (entity.hasOwnProperty(referenceKey)) {
         const schema = this.schema[referenceKey];
-        const referenceId = entity[referenceKey] && entity[referenceKey].id ? entity[referenceKey].id : entity[referenceKey];
+        const referenceId =
+          entity[referenceKey] && entity[referenceKey].id ? entity[referenceKey].id : entity[referenceKey];
         const referenceValue = unvisit(referenceId, schema);
         entity[referenceKey] = referenceValue;
       }
