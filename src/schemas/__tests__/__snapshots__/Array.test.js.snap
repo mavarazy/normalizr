@@ -126,6 +126,7 @@ Object {
     "user": Object {
       "123": Object {
         "id": 123,
+        "type": "user",
       },
     },
   },
@@ -141,9 +142,11 @@ Object {
     "user": Object {
       "1": Object {
         "id": 1,
+        "type": "user",
       },
       "2": Object {
         "id": 2,
+        "type": "user",
       },
     },
   },
@@ -160,9 +163,11 @@ Object {
     "cats": Object {
       "1": Object {
         "id": 1,
+        "type": "cat",
       },
       "2": Object {
         "id": 2,
+        "type": "cat",
       },
     },
   },
@@ -400,9 +405,11 @@ Object {
     "user": Object {
       "1": Object {
         "id": 1,
+        "type": "user",
       },
       "2": Object {
         "id": 2,
+        "type": "user",
       },
     },
   },
@@ -419,9 +426,11 @@ Object {
     "user": Object {
       "1": Object {
         "id": 1,
+        "type": "user",
       },
       "2": Object {
         "id": 2,
+        "type": "user",
       },
     },
   },

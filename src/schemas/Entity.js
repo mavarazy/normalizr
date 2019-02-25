@@ -53,6 +53,15 @@ export default class EntitySchema {
     return entity.hasOwnProperty(referenceKey) && typeof referenceValue === 'object';
   }
 
+  isValid(entity, entityId) {
+      const keys = Object.keys(entity);
+      if (keys.length > 1) {
+        return true;
+      }
+      // This is in order to support single value Entities
+      return keys.length === 1 && Object.values(entity)[0] !== entityId;
+  }
+
   normalize(input, parent, key, visit, addEntity) {
     const processedEntity = this._processStrategy(input, parent, key);
     Object.keys(this.schema).forEach((referenceKey) => {
@@ -67,8 +76,13 @@ export default class EntitySchema {
       }
     });
 
-    addEntity(this, processedEntity, input, parent, key);
-    return this.getId(input, parent, key);
+    const entityId = this.getId(input, parent, key);
+
+    if (this.isValid(processedEntity, entityId)) {
+      addEntity(this, processedEntity, input, parent, key);
+    }
+
+    return entityId;
   }
 
   denormalize(entity, unvisit) {

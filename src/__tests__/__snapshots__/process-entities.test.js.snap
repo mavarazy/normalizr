@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Normalizr schema test should normalize referenced values 1`] = `
+Object {
+  "entities": Object {
+    "Organization": Object {
+      "i3FUO85zlSXhFFbZwthHgg": Object {
+        "audit": Object {
+          "createdBy": Object {
+            "id": "is8V0vRjko9RIENELxtOfQ",
+          },
+          "createdDate": 1970-01-01T00:00:00.000Z,
+          "updatedBy": Object {
+            "id": "is8V0vRjko9RIENELxtOfQ",
+          },
+          "updatedDate": 1970-01-01T00:00:00.000Z,
+        },
+        "cardDefined": true,
+        "email": "some@process.st",
+        "growSumoPartnerKey": "growTest",
+        "id": "i3FUO85zlSXhFFbZwthHgg",
+        "industry": "Human Resources",
+        "minQuantity": 0,
+        "name": "Some Organization",
+        "settings": Object {},
+        "stripeId": "cus_DULho46NcyD1TO",
+        "subscription": Object {
+          "cancelAtPeriodEnd": false,
+          "currentPeriodEndDate": 1970-01-01T00:00:00.000Z,
+          "currentPeriodStartDate": 1970-01-01T00:00:00.000Z,
+          "plan": Object {
+            "id": "hynvsBS2WQ_q9qZPIANOOA",
+          },
+          "quantity": 6,
+          "status": "Active",
+        },
+      },
+    },
+    "OrganizationMembership": Object {
+      "gCcQfV06KXig7iIUyqVFLw": Object {
+        "admin": false,
+        "guest": false,
+        "id": "gCcQfV06KXig7iIUyqVFLw",
+        "organization": Object {
+          "id": "i3FUO85zlSXhFFbZwthHgg",
+        },
+        "user": Object {
+          "id": "iMN428lwSWmZRu8ad11Fbg",
+        },
+      },
+    },
+    "User": Object {
+      "iMN428lwSWmZRu8ad11Fbg": Object {
+        "audit": Object {
+          "createdBy": Object {
+            "id": "iMN428lwSWmZRu8ad11Fbg",
+          },
+          "createdDate": 1970-01-01T00:00:00.000Z,
+          "updatedBy": Object {
+            "id": "iMN428lwSWmZRu8ad11Fbg",
+          },
+          "updatedDate": 1970-01-01T00:00:00.000Z,
+        },
+        "beta": false,
+        "developer": true,
+        "email": "test@process.st",
+        "emailVerificationCodeId": "iMN428lwSWmZRu8ad11Fbg",
+        "emailVerificationSentDate": 1970-01-01T00:00:00.000Z,
+        "emailVerified": true,
+        "google": Object {
+          "domain": "process.st",
+          "email": "test@process.st",
+          "id": "101992404834855289963",
+        },
+        "id": "iMN428lwSWmZRu8ad11Fbg",
+        "origin": "FrontStreet",
+        "ownership": "User",
+        "primaryUserEmail": Object {
+          "id": "iMN428lwSWmZRu8ad11Fbg",
+        },
+        "profile": Object {
+          "timeZone": "Canada/Vancouver",
+          "username": "Some",
+        },
+        "signUpProvider": "Google",
+        "status": "Active",
+        "userType": "Standard",
+        "yammer": Object {
+          "accessToken": "fake-token",
+          "domain": "process.st",
+          "email": "test@process.st",
+          "id": 1678452238,
+        },
+      },
+    },
+  },
+  "result": "gCcQfV06KXig7iIUyqVFLw",
+}
+`;
+
+exports[`Normalizr schema test should restore referenced value 1`] = `
+Object {
+  "admin": false,
+  "guest": false,
+  "id": "gCcQfV06KXig7iIUyqVFLw",
+  "organization": Object {
+    "audit": Object {
+      "createdBy": Object {
+        "id": "is8V0vRjko9RIENELxtOfQ",
+      },
+      "createdDate": 1970-01-01T00:00:00.000Z,
+      "updatedBy": Object {
+        "id": "is8V0vRjko9RIENELxtOfQ",
+      },
+      "updatedDate": 1970-01-01T00:00:00.000Z,
+    },
+    "cardDefined": true,
+    "email": "some@process.st",
+    "growSumoPartnerKey": "growTest",
+    "id": "i3FUO85zlSXhFFbZwthHgg",
+    "industry": "Human Resources",
+    "minQuantity": 0,
+    "name": "Some Organization",
+    "settings": Object {},
+    "stripeId": "cus_DULho46NcyD1TO",
+    "subscription": Object {
+      "cancelAtPeriodEnd": false,
+      "currentPeriodEndDate": 1970-01-01T00:00:00.000Z,
+      "currentPeriodStartDate": 1970-01-01T00:00:00.000Z,
+      "plan": Object {
+        "id": "hynvsBS2WQ_q9qZPIANOOA",
+      },
+      "quantity": 6,
+      "status": "Active",
+    },
+  },
+  "user": Object {
+    "audit": Object {
+      "createdBy": Object {
+        "id": "iMN428lwSWmZRu8ad11Fbg",
+      },
+      "createdDate": 1970-01-01T00:00:00.000Z,
+      "updatedBy": Object {
+        "id": "iMN428lwSWmZRu8ad11Fbg",
+      },
+      "updatedDate": 1970-01-01T00:00:00.000Z,
+    },
+    "beta": false,
+    "developer": true,
+    "email": "test@process.st",
+    "emailVerificationCodeId": "iMN428lwSWmZRu8ad11Fbg",
+    "emailVerificationSentDate": 1970-01-01T00:00:00.000Z,
+    "emailVerified": true,
+    "google": Object {
+      "domain": "process.st",
+      "email": "test@process.st",
+      "id": "101992404834855289963",
+    },
+    "id": "iMN428lwSWmZRu8ad11Fbg",
+    "origin": "FrontStreet",
+    "ownership": "User",
+    "primaryUserEmail": Object {
+      "id": "iMN428lwSWmZRu8ad11Fbg",
+    },
+    "profile": Object {
+      "timeZone": "Canada/Vancouver",
+      "username": "Some",
+    },
+    "signUpProvider": "Google",
+    "status": "Active",
+    "userType": "Standard",
+    "yammer": Object {
+      "accessToken": "fake-token",
+      "domain": "process.st",
+      "email": "test@process.st",
+      "id": 1678452238,
+    },
+  },
+}
+`;

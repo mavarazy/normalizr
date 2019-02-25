@@ -5,15 +5,18 @@ export const normalize = (schema, input, parent, key, visit, addEntity) => {
 
   Object.keys(schema).forEach((referenceKey) => {
     const localSchema = schema[referenceKey];
-    const value = visit(input[referenceKey], input, referenceKey, localSchema, addEntity);
-    if (value === undefined || value === null) {
-      delete object[referenceKey];
-    } else {
-      if (Array.isArray(value) || localSchema._key === undefined || parent === input) {
-        object[referenceKey] = value;
-      } else {
-        object[referenceKey] = { id: value };
-      }
+    const referencedValue = input[referenceKey];
+    if (referencedValue !== undefined) {
+        const value = visit(referencedValue, input, referenceKey, localSchema, addEntity);
+        if (value === undefined || value === null) {
+            delete object[referenceKey];
+        } else {
+            if (Array.isArray(value) || localSchema._key === undefined || parent === input) {
+                object[referenceKey] = value;
+            } else {
+                object[referenceKey] = { id: value };
+            }
+        }
     }
   });
 
@@ -28,7 +31,8 @@ export const denormalize = (schema, input, unvisit) => {
   const object = { ...input };
   Object.keys(schema).forEach((referenceKey) => {
     if (object[referenceKey]) {
-      object[referenceKey] = unvisit(object[referenceKey], schema[referenceKey]);
+      const referencedValue = unvisit(object[referenceKey], schema[referenceKey]);
+      object[referenceKey] = referencedValue ? referencedValue : object[referenceKey];
     }
   });
 

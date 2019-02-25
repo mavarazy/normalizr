@@ -60,8 +60,8 @@ Object {
     "user": Object {
       "1": Object {
         "id": "1",
+        "type": "bar",
       },
-      "undefined": Object {},
     },
   },
   "result": Object {
@@ -76,6 +76,7 @@ Object {
     "user": Object {
       "1": Object {
         "id": 1,
+        "type": "user",
       },
     },
   },
@@ -91,6 +92,7 @@ Object {
     "user": Object {
       "1": Object {
         "id": 1,
+        "type": "user",
       },
     },
   },

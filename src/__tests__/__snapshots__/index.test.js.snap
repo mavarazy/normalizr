@@ -194,6 +194,7 @@ Object {
     "users": Object {
       "456": Object {
         "id": "456",
+        "type": "User",
       },
     },
   },
@@ -207,11 +208,13 @@ Array [
     Object {
       "user": Object {
         "id": "456",
+        "type": "User",
       },
     },
     Object {
       "user": Object {
         "id": "456",
+        "type": "User",
       },
     },
     null,
@@ -220,11 +223,13 @@ Array [
     Object {
       "user": Object {
         "id": "456",
+        "type": "User",
       },
     },
     Object {
       "user": Object {
         "id": "456",
+        "type": "User",
       },
     },
     null,

@@ -118,7 +118,7 @@ describe('normalize', () => {
         idAttribute: idAttributeFn
       }
     );
-    expect(normalize({ user: { id: '456' } }, recommendation)).toMatchSnapshot();
+    expect(normalize({ user: { id: '456', type: 'User' } }, recommendation)).toMatchSnapshot();
     expect(idAttributeFn.mock.calls).toMatchSnapshot();
     expect(recommendation.idAttribute).toBe(idAttributeFn);
   });

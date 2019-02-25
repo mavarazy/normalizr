@@ -7,7 +7,7 @@ const values = (obj) => Object.keys(obj).map((key) => obj[key]);
 describe('EntitySchema normalization', () => {
   test('normalizes an entity', () => {
     const entity = new schema.Entity('item');
-    expect(normalize({ id: 1 }, entity)).toMatchSnapshot();
+    expect(normalize({ id: 1, type: 'item' }, entity)).toMatchSnapshot();
   });
 
   describe('key', () => {
@@ -111,7 +111,7 @@ describe('EntitySchema normalization', () => {
         { idAttribute: (input) => values(input)[0].id, processStrategy }
       );
 
-      expect(normalize({ message: { id: '123', data: { attachment: { id: '456' } } } }, myEntity)).toMatchSnapshot();
+      expect(normalize({ message: { id: '123', data: { attachment: { id: '456', type: 'file' } } } }, myEntity)).toMatchSnapshot();
     });
   });
 });
@@ -210,7 +210,7 @@ describe('EntitySchema denormalization', () => {
         1: { id: 1, food: { id: 1 } }
       },
       foods: {
-        1: { id: 1 }
+        1: { id: 1, type: 'hot-dog' }
       }
     };
 

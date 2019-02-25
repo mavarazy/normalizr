@@ -4,6 +4,7 @@ exports[`EntitySchema denormalization can denormalize already partially denormal
 Object {
   "food": Object {
     "id": 1,
+    "type": "hot-dog",
   },
   "id": 1,
 }
@@ -304,6 +305,7 @@ Object {
     "item": Object {
       "1": Object {
         "id": 1,
+        "type": "item",
       },
     },
   },
@@ -357,6 +359,7 @@ Object {
     "attachments": Object {
       "456": Object {
         "id": "456",
+        "type": "file",
       },
     },
     "entries": Object {

@@ -6,7 +6,7 @@ describe('ArraySchema normalization', () => {
   describe('Object', () => {
     test(`normalizes plain arrays as shorthand for ${schema.Array.name}`, () => {
       const userSchema = new schema.Entity('user');
-      expect(normalize([{ id: 1 }, { id: 2 }], [userSchema])).toMatchSnapshot();
+      expect(normalize([{ id: 1, type: 'user' }, { id: 2, type: 'user' }], [userSchema])).toMatchSnapshot();
     });
 
     test('throws an error if created with more than one schema', () => {
@@ -38,7 +38,7 @@ describe('ArraySchema normalization', () => {
 
     test('normalizes Objects using their values', () => {
       const userSchema = new schema.Entity('user');
-      expect(normalize({ foo: { id: 1 }, bar: { id: 2 } }, [userSchema])).toMatchSnapshot();
+      expect(normalize({ foo: { id: 1, type: 'user' }, bar: { id: 2, type: 'user' } }, [userSchema])).toMatchSnapshot();
     });
   });
 
@@ -46,7 +46,7 @@ describe('ArraySchema normalization', () => {
     test('normalizes a single entity', () => {
       const cats = new schema.Entity('cats');
       const listSchema = new schema.Array(cats);
-      expect(normalize([{ id: 1 }, { id: 2 }], listSchema)).toMatchSnapshot();
+      expect(normalize([{ id: 1, type: 'cat' }, { id: 2, type: 'cat' }], listSchema)).toMatchSnapshot();
     });
 
     test('normalizes multiple entities', () => {
@@ -78,13 +78,13 @@ describe('ArraySchema normalization', () => {
     test('normalizes Objects using their values', () => {
       const userSchema = new schema.Entity('user');
       const users = new schema.Array(userSchema);
-      expect(normalize({ foo: { id: 1 }, bar: { id: 2 } }, users)).toMatchSnapshot();
+      expect(normalize({ foo: { id: 1, type: 'user' }, bar: { id: 2, type: 'user' } }, users)).toMatchSnapshot();
     });
 
     test('filters out undefined and null normalized values', () => {
       const userSchema = new schema.Entity('user');
       const users = new schema.Array(userSchema);
-      expect(normalize([undefined, { id: 123 }, null], users)).toMatchSnapshot();
+      expect(normalize([undefined, { id: 123, type: 'user' }, null], users)).toMatchSnapshot();
     });
   });
 });
