@@ -54,12 +54,12 @@ export default class EntitySchema {
   }
 
   isValid(entity, entityId) {
-      const keys = Object.keys(entity);
-      if (keys.length > 1) {
-        return true;
-      }
-      // This is in order to support single value Entities
-      return keys.length === 1 && Object.values(entity)[0] !== entityId;
+    const keys = Object.keys(entity);
+    if (keys.length > 1) {
+      return true;
+    }
+    // This is in order to support single value Entities
+    return keys.length === 1 && Object.values(entity)[0] !== entityId;
   }
 
   normalize(input, parent, key, visit, addEntity) {

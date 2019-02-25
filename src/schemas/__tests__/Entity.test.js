@@ -111,7 +111,9 @@ describe('EntitySchema normalization', () => {
         { idAttribute: (input) => values(input)[0].id, processStrategy }
       );
 
-      expect(normalize({ message: { id: '123', data: { attachment: { id: '456', type: 'file' } } } }, myEntity)).toMatchSnapshot();
+      expect(
+        normalize({ message: { id: '123', data: { attachment: { id: '456', type: 'file' } } } }, myEntity)
+      ).toMatchSnapshot();
     });
   });
 });
