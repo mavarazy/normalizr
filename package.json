@@ -107,8 +107,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "dependencies": {
-    "@process-street/normalizr": "^3.3.1"
   }
 }
